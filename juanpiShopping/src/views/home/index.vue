@@ -2,7 +2,7 @@
     <div class="container">
       <div class="search" @click="search">
         <!-- <div class="text" @click='search'>搜索</div> -->
-        <van-search placeholder="卷皮搜索" v-model="value" />
+        <van-search placeholder="卷皮搜索" />
         <!-- <i class="iconfont icon-fenlei"></i> -->
       </div>
       <div class="carousel">
@@ -130,13 +130,21 @@ export default {
   //   }
   // }
   .icon {
-    margin-top: 0.14rem;
-    margin-bottom: 0.14rem;
+    // margin-top: 0.14rem;
+    // margin-bottom: 0.14rem;
+    // img {
+    //   width: 19%;
+    //   height: 0.6rem;
+    //   margin-left: 0.1rem;
+    //   margin-right: 0.1rem;
+    // }
+    margin-top: 3%;
+    margin-bottom: 3%;
     img {
-      width: 19%;
-      height: 0.6rem;
-      margin-left: 0.1rem;
-      margin-right: 0.1rem;
+      width: 20%;
+      height: 0.7rem;
+      margin-left: 3%;
+      margin-right: 2%;
     }
   }
   .gif{
