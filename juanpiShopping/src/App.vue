@@ -47,7 +47,7 @@ html,body,#app{
     @include flex();
     @include rect(100%,auto);
     .search{
-      @include background-color(rgb(87, 250, 101));
+      @include background-color(#c8c8c8);
     }
     .carousel{
       @include background-color(rgb(194, 56, 199));
@@ -57,9 +57,6 @@ html,body,#app{
       @include flex-direction(column);
       @include flex();
       @include rect(100%,auto);
-      .icon{
-        @include background-color(rgb(219, 221, 75));
-      }
       .data{
         @include flexbox();
         @include flex-direction(column);

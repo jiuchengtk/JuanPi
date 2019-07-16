@@ -30,6 +30,13 @@ export default new Router({
       }
     },
     {
+      path: '/search',
+      name: 'search',
+      components: {
+        default: () => import('./views/search/index.vue')
+      }
+    },
+    {
       path: '/cart',
       name: 'cart',
       components: {
@@ -43,7 +50,18 @@ export default new Router({
       components: {
         default: () => import('./views/user/index.vue'),
         footer: Footer
-      }
+      },
+      // 嵌套路由分别显示不同的状态
+      children: [
+        {
+          path: 'login',
+          component: () => import('@/components/user/Login.vue')
+        },
+        {
+          path: 'nologin',
+          component: () => import('@/components/user/NoLogin.vue')
+        }
+      ]
     },
     {
       path: '/about',
