@@ -7,50 +7,20 @@
             </div>
             <li class="first-li">
                 <ul class="second-ul" v-show="display1">
-                    <li>
-                        <img src="" alt="">
-                        <span>1-1</span>
-                        <p>1-1</p>
-                    </li>
-                    <li>
-                        <img src="" alt="">
-                        <span>1-2</span>
-                        <p>1-2</p>
-                    </li>
-                    <li>
-                        <img src="" alt="">
-                        <span>1-3</span>
-                        <p>1-3</p>
-                    </li>
-                    <li>
-                        <img src="" alt="">
-                        <span>1-4</span>
-                        <p>1-4</p>
-                    </li>
+                    <router-link :to="{ name: 'details', params: { id:items.id } }" tag="li" v-for="(items, index) of prolist" :key="index">
+                        <img :src="items.images.small" alt="">
+                        <span>{{ items.id }}</span>
+                        <p>{{ items.title }}</p>
+                    </router-link>
                 </ul>
             </li>
             <li class="first-li">
                 <ul class="second-ul" v-show="display2">
-                    <li>
-                        <img src="" alt="">
-                        <span>2-1</span>
-                        <p>2-1</p>
-                    </li>
-                    <li>
-                        <img src="" alt="">
-                        <span>2-2</span>
-                        <p>2-2</p>
-                    </li>
-                    <li>
-                        <img src="" alt="">
-                        <span>2-3</span>
-                        <p>2-3</p>
-                    </li>
-                    <li>
-                        <img src="" alt="">
-                        <span>2-4</span>
-                        <p>2-4</p>
-                    </li>
+                    <router-link to="" tag="li" v-for="(items, index) of prolist" :key="index">
+                        <img :src="items.images.small" alt="">
+                        <span>{{ items.title }}</span>
+                        <p>{{ items.id }}</p>
+                    </router-link>
                 </ul>
             </li>
         </ul>
@@ -58,6 +28,9 @@
 </template>
 <script>
 export default {
+  props: {
+    prolist: Array
+  },
   data () {
     return {
       display1: true,

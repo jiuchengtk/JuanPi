@@ -10,6 +10,13 @@ export default new Router({
   base: process.env.BASE_URL,
   routes: [
     {
+      path: '/details/:id',
+      name: 'details',
+      components: {
+        default: () => import('@/views/details/index.vue')
+      }
+    },
+    {
       path: '/',
       redirect: '/home'
     },
@@ -40,8 +47,8 @@ export default new Router({
       path: '/cart',
       name: 'cart',
       components: {
-        default: () => import('./views/cart/index.vue'),
-        footer: Footer
+        default: () => import('./views/cart/index.vue')
+        // footer: Footer
       }
     },
     {
