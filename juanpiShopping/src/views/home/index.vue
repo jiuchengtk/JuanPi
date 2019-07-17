@@ -64,7 +64,8 @@ Vue.use(Toast)
 export default {
   data () {
     return {
-      bannerlist: []
+      bannerlist: [],
+      prolist: []
     }
   },
   components: {
@@ -85,8 +86,14 @@ export default {
           items = 'https://www.daxunxun.com' + items
           arr.push(items)
         })
-        console.log(arr)
+        // console.log(arr)
         this.bannerlist = arr
+      })
+    fetch('https://www.daxunxun.com/douban')
+      .then(res => res.json()).then(data => {
+        // console.log(data)
+        this.prolist = data
+        // console.log(this.prolist[0].images)
       })
   }
 }
@@ -124,27 +131,15 @@ export default {
       @include rect(100%,auto);
     }
   }
-  // .icon{
-  //   img{
-  //     @include rect(auto,100%);
-  //   }
-  // }
   .icon {
-    // margin-top: 0.14rem;
-    // margin-bottom: 0.14rem;
-    // img {
-    //   width: 19%;
-    //   height: 0.6rem;
-    //   margin-left: 0.1rem;
-    //   margin-right: 0.1rem;
-    // }
     margin-top: 3%;
     margin-bottom: 3%;
     img {
-      width: 20%;
-      height: 0.7rem;
-      margin-left: 3%;
-      margin-right: 2%;
+      // width: 20%;
+      // height: 0.7rem;
+      @include rect(25%,auto);
+      // margin-left: 3%;
+      // margin-right: 2%;
     }
   }
   .gif{

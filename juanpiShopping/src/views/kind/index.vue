@@ -74,11 +74,14 @@ export default {
 
 <style lang="scss">
 .seachGoods {
-  width: 3.2rem;
-  height: 0.36rem;
+  // width: 3.2rem;
+  // height: 0.36rem;
   // background-color: red;
+  width: 82%;
+  height: 0.36rem;
   margin-top: 0.12rem;
-  margin-left: 0.26rem;
+  // margin-left: 0.26rem;
+  margin-left: 9%;
   border: 1px solid #ccc;
   border-radius: 0.16rem;
   color: #ccc;

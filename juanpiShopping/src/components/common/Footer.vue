@@ -9,7 +9,7 @@
           <span class="iconfont icon-fenlei1"></span>
           <p>分类</p>
         </router-link>
-        <router-link tag="li" to="/caet">
+        <router-link tag="li" to="/cart">
           <span class="iconfont icon-gouwuche4"></span>
           <p>购物车</p>
         </router-link>
