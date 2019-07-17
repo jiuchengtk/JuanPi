@@ -17,25 +17,18 @@
                     text="购物车"
                     @click="rightClick"
                 />
-                <!-- <van-goods-action-button
-                        type="warning"
-                        text="购买"
-                        @click="clickButton"
-                > -->
-                <van-button type="primary" size="large" @click="buy">
-                  <van-sku
-                    v-model="show"
-                    :sku="sku"
-                    :goods="goods"
-                    :goods-id="goodsId"
-                    :quota="quota"
-                    :quota-used="quotaUsed"
-                    :close-on-click-overlay="closeOnClickOverlay"
-                    @buy-clicked="onBuyClicked"
-                    @add-cart="onAddCartClicked"
-                  />
-                  <span>购买</span>
-                </van-button>
+                <van-button type="primary" size="large" @click="buy">购买</van-button>
+                <van-sku
+                  v-model="show"
+                  :sku="sku"
+                  :goods="goods"
+                  :goods-id="goodsId"
+                  :quota="quota"
+                  :quota-used="quotaUsed"
+                  :close-on-click-overlay="closeOnClickOverlay"
+                  @buy-clicked="onBuyClicked"
+                  @add-cart="onAddCartClicked"
+                />
             </van-goods-action>
         </div>
     </div>
