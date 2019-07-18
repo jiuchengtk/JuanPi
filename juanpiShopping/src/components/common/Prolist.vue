@@ -75,7 +75,7 @@ export default {
                         display:block;
                         width:100%;
                         height:1rem;
-                        background:#00f;
+                        background:#f4f4f8;
                     }
                     span{
                         color:#0f0;

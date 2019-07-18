@@ -7,6 +7,7 @@
       @click-left="onClickLeft"
       @click-right="onClickRight"
     />
+    <router-view></router-view>
   </div>
 </template>
 
@@ -15,6 +16,16 @@ import Vue from 'vue'
 import { NavBar } from 'vant'
 Vue.use(NavBar)
 export default {
+  // beforeRouteEnter (to, from, next) {
+  //   next(vm => {
+  //     const { $store: { state: { loginState } } } = vm
+  //     if (loginState === 'ok') {
+  //       next('/cart/goods')
+  //     } else {
+  //       next('/cart/nogoods')
+  //     }
+  //   })
+  // },
   methods: {
     onClickLeft () {
       this.$router.back()

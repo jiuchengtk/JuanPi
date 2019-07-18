@@ -43,13 +43,27 @@ export default new Router({
         default: () => import('./views/search/index.vue')
       }
     },
+    // {
+    //   path: '/cart',
+    //   redirect: '/cart/nogoods'
+    // },
     {
       path: '/cart',
       name: 'cart',
       components: {
-        default: () => import('./views/cart/index.vue')
-        // footer: Footer
-      }
+        default: () => import('./views/cart/index.vue'),
+        footer: Footer
+      },
+      children: [
+        {
+          path: 'nogoods',
+          component: () => import('@/components/cart/NoGoods.vue')
+        },
+        {
+          path: 'goods',
+          component: () => import('@/components/cart/Goods.vue')
+        }
+      ]
     },
     {
       path: '/user',
