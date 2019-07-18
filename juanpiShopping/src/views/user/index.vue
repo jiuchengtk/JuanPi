@@ -30,7 +30,8 @@
         </div>
         <div class="separate"></div>
         <van-cell title="我的优惠卷" value=""  @click="discount"/>
-        <van-cell title="我的地址管理" value=""  @click="address"/>
+        <van-cell title="我的地址" value=""  @click="address"/>
+        <van-cell title="我的物流" value=""  @click="logistics"/>
         <van-cell title="我的收藏" value="" />
         <van-cell title="我的拼团" value="" />
         <van-cell title="我的免单卷" value="0张" />
@@ -103,6 +104,10 @@ export default {
     discount () {
       Toast('进入我的优惠卷')
       this.$router.replace('/discountVolum')
+    },
+    logistics () {
+      Toast('进入我的物流')
+      this.$router.replace('/logistics')
     }
   },
   watch: {

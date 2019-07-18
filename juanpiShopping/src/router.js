@@ -33,6 +33,10 @@ const router = new Router({
       components: {
         default: () => import('./views/home/index.vue'),
         footer: Footer
+      },
+      meta: {
+        // 避免重复渲染
+        keepAlive: true
       }
     },
     {
@@ -103,6 +107,13 @@ const router = new Router({
       name: 'discountVolum',
       components: {
         default: () => import('./views/discountVolum/index.vue')
+      }
+    },
+    {
+      path: '/logistics',
+      name: 'logistics',
+      components: {
+        default: () => import('./views/logistics/index.vue')
       }
     },
     {

@@ -17,52 +17,19 @@
                     text="购物车"
                     @click="rightClick"
                 />
-                <van-goods-action-button
-                    type="warning"
-                    text="加入购物车"
-                    @click="leftClickButton"
-                />
-                <van-goods-action-button
-                    type="danger"
-                    text="立即购买"
-                    @click="rightClickButton"
+                <van-button type="primary" size="large" @click="buy">购买</van-button>
+                <van-sku
+                  v-model="show"
+                  :sku="sku"
+                  :goods="goods"
+                  :goods-id="goodsId"
+                  :quota="quota"
+                  :quota-used="quotaUsed"
+                  :close-on-click-overlay="closeOnClickOverlay"
+                  @buy-clicked="onBuyClicked"
+                  @add-cart="onAddCartClicked"
                 />
             </van-goods-action>
-        </div>
-        <div class="mask"></div>
-        <div class="news">
-          <img src="" alt="">
-          <div class="box">
-            <p>￥:{{ id }}</p>
-            <p>描述:{{ title }}</p>
-          </div>
-          <div class="style">
-            <dl>
-              <dt>颜色</dt>
-              <dd>红色</dd>
-              <dd>白色</dd>
-              <dd>紫色</dd>
-              <dd>黑色</dd>
-            </dl>
-            <dl>
-              <dt>样式</dt>
-              <dd>XL</dd>
-              <dd>XXL</dd>
-              <dd>XXXL</dd>
-              <dd>XXXXL</dd>
-              <dd>M</dd>
-              <dd>L</dd>
-            </dl>
-            <div class="small">
-              <p>购买数量：</p>
-              <div>
-                <span @click="reduce">-</span>
-                <p ref='num'>1</p>
-                <span @click="add">+</span>
-              </div>
-            </div>
-          </div>
-          <van-button type="danger" size="large" @click='sure'>确定</van-button>
         </div>
     </div>
 </template>
@@ -76,7 +43,98 @@ export default {
   data () {
     return {
       title: '',
-      id: ''
+      id: '',
+      show: false,
+      goodsId: '',
+      quota: 0,
+      quotaUsed: 0,
+      closeOnClickOverlay: true,
+      sku: {
+        // 所有sku规格类目与其值的从属关系，比如商品有颜色和尺码两大类规格，颜色下面又有红色和蓝色两个规格值。
+        // 可以理解为一个商品可以有多个规格类目，一个规格类目下可以有多个规格值。
+        tree: [
+          {
+            k: '颜色', // skuKeyName：规格类目名称
+            v: [
+              {
+                id: '30349', // skuValueId：规格值 id
+                name: '红色', // skuValueName：规格值名称
+                imgUrl: 'https://img.yzcdn.cn/1.jpg' // 规格类目图片，只有第一个规格类目可以定义图片
+              },
+              {
+                id: '1215',
+                name: '蓝色',
+                imgUrl: 'https://img.yzcdn.cn/2.jpg'
+              }
+            ],
+            k_s: 's1' // skuKeyStr：sku 组合列表（下方 list）中当前类目对应的 key 值，value 值会是从属于当前类目的一个规格值 id
+          },
+          {
+            k: '样式', // skuKeyName：规格类目名称
+            v: [
+              {
+                id: '1000', // skuValueId：规格值 id
+                name: 'xl' // skuValueName：规格值名称
+              },
+              {
+                id: '1111',
+                name: 'xxl'
+              },
+              {
+                id: '1222',
+                name: 'xxxl'
+              }
+            ]
+            // k_s: 's1' // skuKeyStr：sku 组合列表（下方 list）中当前类目对应的 key 值，value 值会是从属于当前类目的一个规格值 id
+          },
+          {
+            k: 'bb', // skuKeyName：规格类目名称
+            v: [
+              {
+                id: '1000', // skuValueId：规格值 id
+                name: 'xl' // skuValueName：规格值名称
+              },
+              {
+                id: '1111',
+                name: 'xxl'
+              },
+              {
+                id: '1222',
+                name: 'xxxl'
+              }
+            ]
+            // k_s: 's1' // skuKeyStr：sku 组合列表（下方 list）中当前类目对应的 key 值，value 值会是从属于当前类目的一个规格值 id
+          }
+        ],
+        list: [
+          {
+            // id: 2259, // skuId，下单时后端需要
+            price: 100, // 价格（单位分）
+            s1: '1215', // 规格类目 k_s 为 s1 的对应规格值 id
+            s2: '1193', // 规格类目 k_s 为 s2 的对应规格值 id
+            s3: '0', // 最多包含3个规格值，为0表示不存在该规格
+            stock_num: 110 // 当前 sku 组合对应的库存
+          },
+          {
+            // id: 2259, // skuId，下单时后端需要
+            price: 100, // 价格（单位分）
+            s1: '30349', // 规格类目 k_s 为 s1 的对应规格值 id
+            s2: '1193', // 规格类目 k_s 为 s2 的对应规格值 id
+            s3: '0', // 最多包含3个规格值，为0表示不存在该规格
+            stock_num: 110 // 当前 sku 组合对应的库存
+          }
+        ],
+        price: '110.00', // 默认价格（单位元）
+        stock_num: 227, // 商品总库存
+        collection_id: 2261, // 无规格商品 skuId 取 collection_id，否则取所选 sku 组合对应的 id
+        none_sku: false // 是否无规格商品
+      },
+      goods: {
+        // 商品标题
+        title: '商品title' // 商品名称
+        // 默认商品 sku 缩略图
+        // picture: 'https://img.yzcdn.cn/1.jpg'
+      }
     }
   },
   methods: {
@@ -86,15 +144,28 @@ export default {
     rightClick () {
       this.$router.push('/cart')
     },
-    leftClickButton () {
+    onBuyClicked () {
+      console.log('onbuy')
     },
-    rightClickButton () {
+    onAddCartClicked () {
+      console.log('onadd')
     },
-    sure () {
+    buy () {
+      if (this.show === false) {
+        this.show = true
+      }
     },
-    reduce () {
+    close () {
+      console.log('close')
     },
-    add () {
+    on () {
+      console.log('on')
+    },
+    click () {
+      console.log('click')
+    },
+    overlay () {
+      console.log('overlay')
     }
   },
   mounted () {
@@ -103,9 +174,9 @@ export default {
       .then(res => res.json()).then(data => {
         this.title = data[0].title
         this.id = data[0].id
+        // console.log(this.goods.title)
+        this.goods.title = data[0].title
       })
-    const news = document.querySelector('.news')
-    console.log(news)
   }
 }
 </script>
@@ -124,85 +195,11 @@ html,body,#app,.detail{width:100%;height:100%}
             @include rect(100%,auto);
         }
     }
-    // .footer{
-    // }
-    .mask{
-      background: rgba(0, 0, 0, 0.5);
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      display: none;
+  .van-goods-action{
+    @include flexbox();
+    .bye{
+      @include flex();
     }
-    .news{
-      position:absolute;
-      width: 100%;
-      height: 70%;
-      background: #fff;
-      top: 30%;
-      // top: 110%;
-      @include flexbox();
-      img{
-        width:0.7rem;
-        height:0.8rem;
-        position:absolute;
-        top: -0.3rem;
-        left: 0.2rem;
-        background:#f0f;
-      }
-      .box{
-        position:absolute;
-        left: 1rem;
-      }
-      .van-button{
-        position:absolute;
-        bottom: 0;
-      }
-      .style{
-        overflow: hidden;
-        width:90%;
-        margin:1rem 5% 0;
-      }
-      dl{
-        @include rect(100%,1rem);
-        dt{
-          display:block;
-          margin-bottom:0.1rem;
-        }
-        dd{
-          float:left;
-          width:0.7rem;
-          text-align: center;
-          margin-right:0.1rem;
-          margin-bottom:0.1rem;
-          font: 12px/2 "";
-          border:1px solid #000;
-        }
-      }
-      .small{
-        @include flexbox();
-        justify-content:space-between;
-        @include rect(100%,1rem);
-        p{
-          font:0.15rem/0.2rem "";
-        }
-        span{
-          display:inline-block;
-          height:0.2rem;
-          width:0.2rem;
-          text-align: center;
-          background:#f7f7f7;
-          color:red;
-        }
-        div{
-          p,span{
-            float:left;
-          }
-          p{
-            margin-left:10px;
-            margin-right:10px;
-          }
-        }
-      }
-    }
+  }
 }
 </style>
