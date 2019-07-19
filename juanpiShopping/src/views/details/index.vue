@@ -35,10 +35,11 @@
 </template>
 <script>
 import Vue from 'vue'
-import { GoodsAction, GoodsActionIcon, GoodsActionButton, Sku, Button } from 'vant'
+import { GoodsAction, GoodsActionIcon, GoodsActionButton, Sku, Button, Toast } from 'vant'
 Vue.use(GoodsAction).use(GoodsActionIcon).use(GoodsActionButton)
 Vue.use(Sku)
 Vue.use(Button)
+Vue.use(Toast)
 export default {
   data () {
     return {
@@ -68,43 +69,43 @@ export default {
               }
             ],
             k_s: 's1' // skuKeyStr：sku 组合列表（下方 list）中当前类目对应的 key 值，value 值会是从属于当前类目的一个规格值 id
-          },
-          {
-            k: '样式', // skuKeyName：规格类目名称
-            v: [
-              {
-                id: '1000', // skuValueId：规格值 id
-                name: 'xl' // skuValueName：规格值名称
-              },
-              {
-                id: '1111',
-                name: 'xxl'
-              },
-              {
-                id: '1222',
-                name: 'xxxl'
-              }
-            ]
-            // k_s: 's1' // skuKeyStr：sku 组合列表（下方 list）中当前类目对应的 key 值，value 值会是从属于当前类目的一个规格值 id
-          },
-          {
-            k: 'bb', // skuKeyName：规格类目名称
-            v: [
-              {
-                id: '1000', // skuValueId：规格值 id
-                name: 'xl' // skuValueName：规格值名称
-              },
-              {
-                id: '1111',
-                name: 'xxl'
-              },
-              {
-                id: '1222',
-                name: 'xxxl'
-              }
-            ]
-            // k_s: 's1' // skuKeyStr：sku 组合列表（下方 list）中当前类目对应的 key 值，value 值会是从属于当前类目的一个规格值 id
           }
+          // {
+          //   k: '样式', // skuKeyName：规格类目名称
+          //   v: [
+          //     {
+          //       id: '1000', // skuValueId：规格值 id
+          //       name: 'xl' // skuValueName：规格值名称
+          //     },
+          //     {
+          //       id: '1111',
+          //       name: 'xxl'
+          //     },
+          //     {
+          //       id: '1222',
+          //       name: 'xxxl'
+          //     }
+          //   ]
+          // k_s: 's1' // skuKeyStr：sku 组合列表（下方 list）中当前类目对应的 key 值，value 值会是从属于当前类目的一个规格值 id
+          // },
+          // {
+          //   k: 'bb', // skuKeyName：规格类目名称
+          //   v: [
+          //     {
+          //       id: '1000', // skuValueId：规格值 id
+          //       name: 'xl' // skuValueName：规格值名称
+          //     },
+          //     {
+          //       id: '1111',
+          //       name: 'xxl'
+          //     },
+          //     {
+          //       id: '1222',
+          //       name: 'xxxl'
+          //     }
+          //   ]
+          // k_s: 's1' // skuKeyStr：sku 组合列表（下方 list）中当前类目对应的 key 值，value 值会是从属于当前类目的一个规格值 id
+          // }
         ],
         list: [
           {
@@ -145,9 +146,12 @@ export default {
       this.$router.push('/cart')
     },
     onBuyClicked () {
+      this.show = false
       console.log('onbuy')
     },
     onAddCartClicked () {
+      Toast('加入购物车成功')
+      this.show = false
       console.log('onadd')
     },
     buy () {

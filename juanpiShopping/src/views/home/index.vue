@@ -81,18 +81,20 @@ export default {
     onLoad () {
       // console.log('加载数据')
       this.loading = true
-      fetch('https://www.daxunxun.com/douban?conunt=20&start=' + this.page * 20)
-        .then(res => res.json()).then(data => {
-          // console.log(data)
-          this.loading = false
-          this.page++
-          if (data.length === 0) {
-            console.log('没有数据了')
-            this.finished = true
-          } else {
-            this.prolist = [...this.prolist, ...data]
-          }
-        })
+      // fetch('https://www.daxunxun.com/douban?conunt=20&start=' + this.page * 20)
+      //   .then(res => res.json()).then(data => {
+      //     // console.log(data)
+      //     this.loading = false
+      //     this.page++
+      //     if (data.length === 0) {
+      //       console.log('没有数据了')
+      //       this.finished = true
+      //     } else {
+      //       this.prolist = [...this.prolist, ...data]
+      //     }
+      //   })
+      this.loading = false
+      this.finished = true
     },
     onRefresh () {
       this.isLoading = true
@@ -105,7 +107,7 @@ export default {
         })
     },
     scrollFn () {
-      console.log(event.target.scrollFn)
+      // console.log(event.target.scrollFn)
       if (event.target.scrollTop > 200) {
         this.flag = true
       } else {
@@ -114,25 +116,33 @@ export default {
     }
   },
   mounted () {
-    fetch('https://www.daxunxun.com/banner')
+    fetch('http://10.11.56.162:3000/api/banner')
       .then(res => res.json()).then(data => {
         // console.log(data)
         var arr = []
         data.map(items => {
-          items = 'https://www.daxunxun.com' + items
+          items = items.pic
           arr.push(items)
         })
-        // console.log(arr)
         this.bannerlist = arr
       })
-    fetch('https://www.daxunxun.com/douban')
+    fetch('http://10.11.56.162:3000/api/singleProduct')
       .then(res => res.json()).then(data => {
-        // console.log(data)
+        // var arr2 = []
+        // data.map(items => {
+        //   arr2.unshift(items)
+        // })
+        // this.prolist2 = arr2
         this.prolist = data
-        // console.log(this.prolist[0].images)
       })
-    const content = document.querySelector('#content')  
-    content.addEventListener('scroll', this.scrollFn)  
+    // fetch('https://www.daxunxun.com/douban')
+    //   .then(res => res.json()).then(data => {
+    //     console.log(data)
+    //     this.prolist = data
+      // console.log(this.prolist[0].images)
+      // })
+    const content = document.querySelector('#content')
+    content.addEventListener('scroll', this.scrollFn)
   },
   // 导航守卫
   beforeRouteLeave (to, from, next) {
