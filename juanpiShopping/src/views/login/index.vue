@@ -258,6 +258,7 @@ export default {
             type: types.CHANGE_LOGIN_STATE,
             result: 'ok'
           })
+          console.log(this.$store.state.loginState)
           this.$router.back()
         } else if (data === 2) {
           Dialog.confirm({
