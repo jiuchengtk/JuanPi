@@ -2,24 +2,26 @@
     <div class="list">
         <ul class="first-ul">
             <div class="h4">
-                <h4 @click="change1">精选专场</h4>
-                <h4 @click="change2">精选单品</h4>
+                <h4 @click="change1">精选单品</h4>
+                <h4 @click="change2">精选专场</h4>
             </div>
             <li class="first-li">
                 <ul class="second-ul" v-show="display1">
-                    <router-link :to="{ name: 'details', params: { id:items.id } }" tag="li" v-for="(items, index) of prolist" :key="index">
-                        <img :src="items.images.small" alt="">
-                        <span>{{ items.id }}</span>
+                    <router-link :to="{ name: 'details', params: { id:items.goods_id } }" tag="li" v-for="(items, index) of prolist" :key="index">
+                        <img :src="items.pic_url" alt="">
                         <p>{{ items.title }}</p>
+                        <span>￥{{ items.cprice }}</span>
+                        <span class="te">{{ items.leftText }}</span>
                     </router-link>
                 </ul>
             </li>
             <li class="first-li">
                 <ul class="second-ul" v-show="display2">
-                    <router-link to="" tag="li" v-for="(items, index) of prolist" :key="index">
-                        <img :src="items.images.small" alt="">
-                        <span>{{ items.title }}</span>
-                        <p>{{ items.id }}</p>
+                    <router-link :to="{ name: 'details', params: { id:items.goods_id } }" tag="li" v-for="(items, index) of prolist" :key="index">
+                        <img :src="items.pic_url" alt="">
+                        <p>{{ items.title }}</p>
+                        <span>￥{{ items.cprice }}</span>
+                        <span class="te">{{ items.leftText }}</span>
                     </router-link>
                 </ul>
             </li>
@@ -52,6 +54,7 @@ export default {
 <style lang="scss">
 @import '@/lib/reset.scss';
 .list{
+    background:#f4f4f4;
     .first-ul{
         @include flexbox();
         @include flex-direction(column);
@@ -74,14 +77,24 @@ export default {
                     img{
                         display:block;
                         width:100%;
-                        height:1rem;
-                        background:#00f;
+                        height:2rem;
+                        background:#f4f4f4;
                     }
                     span{
-                        color:#0f0;
+                        color:#3b3b3b;
+                        margin-left:0.1rem;
+                        font-size:0.12rem;
                     }
                     p{
-                        color:#f00;
+                        color:#ff464e;
+                        margin-left:0.1rem;
+                        font-size:0.15rem;
+                        margin-top:2px;
+                    }
+                    .te{
+                        color:#bbb;
+                        margin-left:0.5rem;
+                        font-size:0.1rem;
                     }
                 }
             }
