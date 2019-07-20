@@ -11,6 +11,7 @@
                         <img :src="items.pic_url" alt="">
                         <p>{{ items.title }}</p>
                         <span>￥{{ items.cprice }}</span>
+                        <span class="opr">￥{{ items.oprice }}</span>
                         <span class="te">{{ items.leftText }}</span>
                     </router-link>
                 </ul>
@@ -21,6 +22,7 @@
                         <img :src="items.pic_url" alt="">
                         <p>{{ items.title }}</p>
                         <span>￥{{ items.cprice }}</span>
+                        <span class="opr">￥{{ items.oprice }}</span>
                         <span class="te">{{ items.leftText }}</span>
                     </router-link>
                 </ul>
@@ -72,8 +74,11 @@ export default {
             .second-ul{
                 width:100%;
                 li{
-                    width:50%;
+                    width:46%;
                     float:left;
+                    margin-right: 2%;
+                    margin-left: 2%;
+                    margin-top: 0.1rem;
                     img{
                         display:block;
                         width:100%;
@@ -81,20 +86,28 @@ export default {
                         background:#f4f4f4;
                     }
                     span{
-                        color:#3b3b3b;
+                        // color:#3b3b3b;
+                        color: #ff464e;
                         margin-left:0.1rem;
                         font-size:0.12rem;
                     }
                     p{
-                        color:#ff464e;
+                        // color:#ff464e;
+                        color: #3b3b3b;
                         margin-left:0.1rem;
-                        font-size:0.15rem;
+                        font-size:0.11rem;
                         margin-top:2px;
                     }
                     .te{
                         color:#bbb;
-                        margin-left:0.5rem;
+                        margin-left:0.09rem;
                         font-size:0.1rem;
+                    }
+                    .opr {
+                        color: #ccc;
+                        font-size: 0.08rem;
+                        text-decoration: line-through;
+                        margin-left: 0.03rem;
                     }
                 }
             }

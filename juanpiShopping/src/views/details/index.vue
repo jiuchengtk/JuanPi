@@ -4,6 +4,7 @@
             <img src="" alt="">
             <span>￥:{{ id }}</span>
             <p>描述:{{ title }}</p>
+            <!-- <p>{{ title }}</p> -->
         </div>
         <div class="footer">
             <van-goods-action>
@@ -174,13 +175,25 @@ export default {
   },
   mounted () {
     const { $route: { params: { id } } } = this
-    fetch('https://www.daxunxun.com/detail?id=' + id)
+    console.log(id)
+    fetch('http://10.11.56.162:3000/api/singleProduct/details?id=' + id)
       .then(res => res.json()).then(data => {
+        console.log(data[0])
         this.title = data[0].title
         this.id = data[0].id
         // console.log(this.goods.title)
         this.goods.title = data[0].title
+        // console.log(data)
       })
+      // fetch('http://10.11.56.162:3000/api/singleProduct?id=' + 128214551)
+      // .then(res => res.json()).then(data => {
+      //   // console.log(data[0])
+      //   // this.title = data[0].title
+      //   // this.id = data[0].id
+      //   // // console.log(this.goods.title)
+      //   // this.goods.title = data[0].title
+      //   console.log(data)
+      // })
   }
 }
 </script>
