@@ -100,17 +100,19 @@ export default {
     }
   },
   mounted () {
-    fetch('https://www.daxunxun.com/banner')
-      .then(res => res.json()).then(data => {
-        // console.log(data)
-        var arr = []
-        data.map(items => {
-          items = 'https://www.daxunxun.com' + items
-          arr.push(items)
-        })
-        // console.log(arr)
-        this.bannerlist = arr
-      })
+    // fetch('https://www.daxunxun.com/banner')
+    //   .then(res => res.json()).then(data => {
+    //     // console.log(data)
+    //     var arr = []
+    //     data.map(items => {
+    //       items = 'https://www.daxunxun.com' + items
+    //       arr.push(items)
+    //     })
+    //     // console.log(arr)
+    //     this.bannerlist = arr
+    //   })
+    fetch('http://10.11.56.162:3000/api/banner')
+      .then(res => res.json()).then(data => console.log(data))
     fetch('https://www.daxunxun.com/douban')
       .then(res => res.json()).then(data => {
         // console.log(data)
