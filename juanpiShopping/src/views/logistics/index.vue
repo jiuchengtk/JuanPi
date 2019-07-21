@@ -29,7 +29,7 @@
 
 <script>
 import Vue from 'vue'
-import { NavBar,Step, Steps } from 'vant'
+import { NavBar, Step, Steps } from 'vant'
 
 Vue.use(NavBar)
 Vue.use(Step).use(Steps)

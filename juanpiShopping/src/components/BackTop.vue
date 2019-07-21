@@ -1,6 +1,7 @@
 <template>
   <div class="backTop" v-show="show" @click="backTop">
-    <van-icon name="upgrade" size="34px"/>
+    <!-- <van-icon name="upgrade" size="34px"/> -->
+    <i class="iconfont icon-fanhuidingbu1"></i>
   </div>
 </template>
 
@@ -21,4 +22,10 @@ export default {
 </script>
 
 <style lang="scss">
+.backTop {
+  i {
+    font-size: 37px;
+    color: crimson;
+  }
+}
 </style>

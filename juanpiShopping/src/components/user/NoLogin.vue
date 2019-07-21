@@ -17,6 +17,10 @@ export default {}
     color: #fff;
     background-color: #ff464e;
     padding-top: 0.4rem;
+    // border-top-left-radius: 10%;
+    // border-top-right-radius: 10%;
+    // border-bottom-left-radius: 10%;
+    // border-bottom-right-radius: 10%;
     span {
       // margin-right: 0.4rem;
       margin-right: 12%;

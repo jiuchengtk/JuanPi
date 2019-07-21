@@ -9,6 +9,8 @@ var usersRouter = require('./routes/users');
 var apiusersRouter = require('./api/users');
 var apibannerRouter = require('./api/banner');
 var apisingleProductRouter = require('./api/singleProduct');
+var apiskuProductRouter = require('./api/skuProduct');
+var apikindRouter = require('./api/kind');
 var app = express();
 
 var allowCrossDomain = (req, res, next) => {
@@ -33,6 +35,8 @@ app.use('/users', usersRouter);
 app.use('/api/users', apiusersRouter);
 app.use('/api/banner', apibannerRouter);
 app.use('/api/singleProduct', apisingleProductRouter);
+app.use('/api/skuProduct', apiskuProductRouter);
+app.use('/api/kind', apikindRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -1,5 +1,6 @@
 <template>
     <div class="container" id="content">
+      <!-- <div class="content" id="content1"> -->
       <!-- <van-pull-refresh v-model="isLoading" @refresh="onRefresh"> -->
         <div class="search" @click="search">
           <van-search placeholder="卷皮搜索" />
@@ -44,7 +45,8 @@
         </van-list>
       <!-- </van-pull-refresh> -->
       <BackTop v-show="flag" />
-    </div>
+      </div>
+    <!-- </div> -->
 </template>
 <script>
 import Prolist from '@/components/common/Prolist.vue'
@@ -81,24 +83,24 @@ export default {
     onLoad () {
       // console.log('加载数据')
       this.loading = true
-      // fetch('https://www.daxunxun.com/douban?conunt=20&start=' + this.page * 20)
-      //   .then(res => res.json()).then(data => {
-      //     // console.log(data)
-      //     this.loading = false
-      //     this.page++
-      //     if (data.length === 0) {
-      //       console.log('没有数据了')
-      //       this.finished = true
-      //     } else {
-      //       this.prolist = [...this.prolist, ...data]
-      //     }
-      //   })
+      fetch('http://10.11.56.162:3000/api/singleProduct?conunt=8&start=' + this.page * 8)
+        .then(res => res.json()).then(data => {
+          // console.log(data)
+          this.loading = false
+          this.page++
+          if (data.length === 0) {
+            console.log('没有数据了')
+            this.finished = true
+          } else {
+            this.prolist = [...this.prolist, ...data]
+          }
+        })
       this.loading = false
       this.finished = true
     },
     onRefresh () {
       this.isLoading = true
-      fetch('https://www.daxunxun.com/douban')
+      fetch('http://10.11.56.162:3000/api/banner')
         .then(res => res.json()).then(data => {
           this.isLoading = false
           this.prolist = data
@@ -108,7 +110,7 @@ export default {
     },
     scrollFn () {
       // console.log(event.target.scrollFn)
-      if (event.target.scrollTop > 200) {
+      if (event.target.scrollTop > 250) {
         this.flag = true
       } else {
         this.flag = false
@@ -183,7 +185,7 @@ export default {
     right: 18px;
     width: 34px;
     height: 34px;
-    background-color: #f1f1f1;
+    // background-color: #fff;
     border-radius: 50%;
   }
   .carousel{

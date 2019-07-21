@@ -53,7 +53,7 @@
 <script>
 import Vue from 'vue'
 import { NavBar, Image, Cell, CellGroup, Toast } from 'vant'
-import * as types from '@/mutation-types'
+// import * as types from '@/mutation-types'
 
 Vue.use(NavBar)
 Vue.use(Image)

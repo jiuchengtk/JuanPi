@@ -33,7 +33,7 @@ Vue.use(NavBar)
 export default {
   data () {
     return {
-      chosenCoupon: -1,
+      // chosenCoupon: -1,
       // coupons: [coupon],
       // disabledCoupons: [coupon]
     }

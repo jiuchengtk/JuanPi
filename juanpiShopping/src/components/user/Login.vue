@@ -38,6 +38,10 @@ export default {
     background-color: #ff464e;
     .van-image {
       margin: 6% 8%;
+      // border-radius: 30%;
+      src {
+        // border-radius: 1rem;
+      }
     }
     p {
       margin-top: -26%;

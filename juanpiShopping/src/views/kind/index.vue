@@ -23,6 +23,11 @@
          <van-sidebar-item title="通讯旅游"/>
           <van-sidebar-item title=""/>
       </van-sidebar>
+      <div class="classifyRight">
+        <div class="kinds">
+          112
+        </div>
+      </div>
       <!-- <div class="classifyLeft">
         <ul>
           <li>女装</li>
@@ -134,6 +139,15 @@ export default {
       line-height: 0.46rem;
       cursor: pointer;
     }
+  }
+  .classifyRight {
+    width: 70%;
+    height: 98%;
+    float: left;
+    overflow: scroll;
+    margin-top: 0.18rem;
+    margin-left: 3%;
+    background-color: cornflowerblue;
   }
 }
 </style>
