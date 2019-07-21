@@ -1,19 +1,19 @@
-const mongoose = require("./db");
-const Schema = mongoose.Schema;
+const mongoose = require('./db')
+const { Schema } = mongoose
 
-// 精选单品
-const SingleProductSchema = new Schema({
-  goods_id: { type: String },
-  shop_id: { type: String },
+const singleProductSchema = new Schema({
+  goods_id: { type: Number },
+  shop_id: { type: Number },
   title: { type: String },
   title_long: { type: String },
-  oprice: { type: Number },
-  cprice: { type: Number },
-  start_time: {type: String },
-  end_time: { type: String },
+  oprice: { type: String },
+  cprice: { type: String },
   time_left: { type: String },
-  pic_url: { type: String }
+  pic_url: { type: String },
+  corner: { type: String },
+  goods_jump_url: { type: String },
+  leftText: { type: String },
+  rightText: { type: String }
 })
 
-// 暴露模块
-module.exports = mongoose.model("SingleProduct", SingleProductSchema);
+module.exports = mongoose.model('singleProduct', singleProductSchema, 'singleProduct')

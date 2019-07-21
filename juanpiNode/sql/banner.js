@@ -1,10 +1,9 @@
-const mongoose = require("./db");
-const Schema = mongoose.Schema;
+const mongoose = require('./db');
+const { Schema } = mongoose;
 
-// 轮播图
 const BannerSchema = new Schema({
   id: { type: Number },
   pic: { type: String }
-});
+})
 
-module.exports = mongoose.model("Banner", BannerSchema);
+module.exports = mongoose.model('banner', BannerSchema,"banner");

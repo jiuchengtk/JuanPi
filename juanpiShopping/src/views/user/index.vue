@@ -2,22 +2,7 @@
   <div class="container">
     <div class="header">
       <van-nav-bar title="个人中心" left-text="返回" left-arrow @click-left="onClickLeft"/>
-      <div class="nolog">
-        <span>注册</span>
-        <span class="noIcon">|</span>
-        <span>登录</span>
-      </div>
-      <!-- <div class="login">
-      <van-image
-        width="60"
-        height="60"
-        src="https://img.yzcdn.cn/vant/cat.jpeg"
-      />
-      <div class="stat">
-        <p>jp_23811d7b9</p>
-        <p>我的账户</p>
-      </div>
-      </div>-->
+      <router-view></router-view>
     </div>
     <!-- <router-view></router-view> -->
     <div class="content">
@@ -44,7 +29,9 @@
           </ul>
         </div>
         <div class="separate"></div>
-        <van-cell title="我的优惠卷" value="" />
+        <van-cell title="我的优惠卷" value=""  @click="discount"/>
+        <van-cell title="我的地址" value=""  @click="address"/>
+        <van-cell title="我的物流" value=""  @click="logistics"/>
         <van-cell title="我的收藏" value="" />
         <van-cell title="我的拼团" value="" />
         <van-cell title="我的免单卷" value="0张" />
@@ -54,9 +41,9 @@
         <van-cell title="关于卷皮" value="" />
         <div class="separate"></div>
         <div class="inFooter">
-          <span>返回首页</span>
-          <span>客户端</span>
-          <span>电脑端</span>
+          <span @click="returnHome">返回首页</span>
+          <span @click="returnHome">客户端</span>
+          <span @click="returnHome">电脑端</span>
         </div>
       </van-cell-group>
     </div>
@@ -65,55 +52,82 @@
 
 <script>
 import Vue from 'vue'
-import { NavBar, Image, Cell, CellGroup } from 'vant'
+import { NavBar, Image, Cell, CellGroup, Toast } from 'vant'
+import * as types from '@/mutation-types'
 
 Vue.use(NavBar)
 Vue.use(Image)
 Vue.use(Cell).use(CellGroup)
+Vue.use(Toast)
 
 export default {
+  mounted () {
+    if (localStorage.getItem('isLogin') === 'ok') {
+      this.$router.push('/user/login')
+    } else {
+      this.$router.push('/user/nologin')
+    }
+  },
+  // 组件内导航守卫,在进入user 之前判断是登录还是未登录的状态，显示不同的组件
+  beforeRouteEnter (to, from, next) {
+    next(vm => {
+      // const loginState = vm.$store.state.loginState
+      const { $store: { state: { loginState } } } = vm
+      if (to.name === 'user') {
+        if (loginState === 'ok') {
+          vm.$router.replace('/user/login')
+        } else {
+          vm.$router.replace('/user/nologin')
+        }
+      } else {
+        next()
+      }
+    })
+  },
   methods: {
     onClickLeft () {
       this.$router.back()
+    },
+    returnHome () {
+      this.$router.replace('/home')
+    },
+    register () {
+      Toast('欢迎注册')
+    },
+    login () {
+      Toast('欢迎登录')
+    },
+    address () {
+      Toast('进入我的地址')
+      this.$router.replace('/addresslist')
+    },
+    discount () {
+      Toast('进入我的优惠卷')
+      this.$router.replace('/discountVolum')
+    },
+    logistics () {
+      Toast('进入我的物流')
+      this.$router.replace('/logistics')
+    }
+  },
+  watch: {
+    // 监听当前的路由
+    $route (newVal, oldVal) {
+      // const loginState = this.$store.state.loginState
+      const { $store: { state: { loginState } } } = this
+      if (newVal.name === 'user') {
+        if (loginState === 'ok') {
+          this.$route.replace('/user/login')
+        } else {
+          this.$route.replace('/user/nologin')
+        }
+      }
     }
   }
 }
 </script>
 
 <style lang="scss">
-.header {
-  .nolog {
-    height: 1rem;
-    color: #fff;
-    background-color: orangered;
-    padding-top: 0.4rem;
-    span {
-      margin-right: 0.4rem;
-      text-align: center;
-      margin-left: 0.5rem;
-      font-size: 20px;
-      .noIcon {
-        margin-left: 0.1rem;
-        margin-right: 0.1rem;
-      }
-    }
-  }
-  // .login {
-  //   height: 1rem;
-  //   color: #fff;
-  //   background-color: orangered;
-  //   padding-top: 0.28rem;
-  //   padding-left: 0.2rem;
-  //   .stat {
-  //     width: 1.2rem;
-  //     float: right;
-  //     margin-right: 1.4rem;
-  //     p {
-  //       margin-bottom: 0.02rem;
-  //     }
-  //   }
-  // }
-}
 .content {
   margin-top: 0.08rem;
   overflow: scroll;
@@ -156,7 +170,8 @@ export default {
       padding-top: 0.1rem;
       margin-top: 0.4rem;
       width: 25%;
-      margin-left: 0.59rem;
+      margin-left: 12%;
+      margin-right: 10%;
       text-align: center;
     }
   }

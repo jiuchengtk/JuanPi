@@ -4,6 +4,10 @@
             <img src="" alt="">
             <span>￥:{{ id }}</span>
             <p>描述:{{ title }}</p>
+<<<<<<< HEAD
+=======
+            <!-- <p>{{ title }}</p> -->
+>>>>>>> 5ddad44214dabc903988d968d15da98f829bbd3d
         </div>
         <div class="footer">
             <van-goods-action>
@@ -35,10 +39,18 @@
 </template>
 <script>
 import Vue from 'vue'
+<<<<<<< HEAD
 import { GoodsAction, GoodsActionIcon, GoodsActionButton, Sku, Button } from 'vant'
 Vue.use(GoodsAction).use(GoodsActionIcon).use(GoodsActionButton)
 Vue.use(Sku)
 Vue.use(Button)
+=======
+import { GoodsAction, GoodsActionIcon, GoodsActionButton, Sku, Button, Toast } from 'vant'
+Vue.use(GoodsAction).use(GoodsActionIcon).use(GoodsActionButton)
+Vue.use(Sku)
+Vue.use(Button)
+Vue.use(Toast)
+>>>>>>> 5ddad44214dabc903988d968d15da98f829bbd3d
 export default {
   data () {
     return {
@@ -68,6 +80,7 @@ export default {
               }
             ],
             k_s: 's1' // skuKeyStr：sku 组合列表（下方 list）中当前类目对应的 key 值，value 值会是从属于当前类目的一个规格值 id
+<<<<<<< HEAD
           },
           {
             k: '样式', // skuKeyName：规格类目名称
@@ -105,6 +118,45 @@ export default {
             ]
             // k_s: 's1' // skuKeyStr：sku 组合列表（下方 list）中当前类目对应的 key 值，value 值会是从属于当前类目的一个规格值 id
           }
+=======
+          }
+          // {
+          //   k: '样式', // skuKeyName：规格类目名称
+          //   v: [
+          //     {
+          //       id: '1000', // skuValueId：规格值 id
+          //       name: 'xl' // skuValueName：规格值名称
+          //     },
+          //     {
+          //       id: '1111',
+          //       name: 'xxl'
+          //     },
+          //     {
+          //       id: '1222',
+          //       name: 'xxxl'
+          //     }
+          //   ]
+          // k_s: 's1' // skuKeyStr：sku 组合列表（下方 list）中当前类目对应的 key 值，value 值会是从属于当前类目的一个规格值 id
+          // },
+          // {
+          //   k: 'bb', // skuKeyName：规格类目名称
+          //   v: [
+          //     {
+          //       id: '1000', // skuValueId：规格值 id
+          //       name: 'xl' // skuValueName：规格值名称
+          //     },
+          //     {
+          //       id: '1111',
+          //       name: 'xxl'
+          //     },
+          //     {
+          //       id: '1222',
+          //       name: 'xxxl'
+          //     }
+          //   ]
+          // k_s: 's1' // skuKeyStr：sku 组合列表（下方 list）中当前类目对应的 key 值，value 值会是从属于当前类目的一个规格值 id
+          // }
+>>>>>>> 5ddad44214dabc903988d968d15da98f829bbd3d
         ],
         list: [
           {
@@ -145,9 +197,18 @@ export default {
       this.$router.push('/cart')
     },
     onBuyClicked () {
+<<<<<<< HEAD
       console.log('onbuy')
     },
     onAddCartClicked () {
+=======
+      this.show = false
+      console.log('onbuy')
+    },
+    onAddCartClicked () {
+      Toast('加入购物车成功')
+      this.show = false
+>>>>>>> 5ddad44214dabc903988d968d15da98f829bbd3d
       console.log('onadd')
     },
     buy () {
@@ -170,13 +231,34 @@ export default {
   },
   mounted () {
     const { $route: { params: { id } } } = this
+<<<<<<< HEAD
     fetch('https://www.daxunxun.com/detail?id=' + id)
       .then(res => res.json()).then(data => {
+=======
+    console.log(id)
+    fetch('http://10.11.56.162:3000/api/singleProduct/details?id=' + id)
+      .then(res => res.json()).then(data => {
+        console.log(data[0])
+>>>>>>> 5ddad44214dabc903988d968d15da98f829bbd3d
         this.title = data[0].title
         this.id = data[0].id
         // console.log(this.goods.title)
         this.goods.title = data[0].title
+<<<<<<< HEAD
       })
+=======
+        // console.log(data)
+      })
+      // fetch('http://10.11.56.162:3000/api/singleProduct?id=' + 128214551)
+      // .then(res => res.json()).then(data => {
+      //   // console.log(data[0])
+      //   // this.title = data[0].title
+      //   // this.id = data[0].id
+      //   // // console.log(this.goods.title)
+      //   // this.goods.title = data[0].title
+      //   console.log(data)
+      // })
+>>>>>>> 5ddad44214dabc903988d968d15da98f829bbd3d
   }
 }
 </script>

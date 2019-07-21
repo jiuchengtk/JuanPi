@@ -8,7 +8,11 @@
         <div class="data">内容区</div>
       </div>
     </div> -->
-    <router-view></router-view>
+    <!-- <router-view></router-view> -->
+    <keep-alive>
+      <router-view v-if="$route.meta.keepAlive"></router-view>
+    </keep-alive>
+    <router-view v-if="!$route.meta.keepAlive"></router-view>
     <router-view name="footer"></router-view>
     <!-- <footer class="footer">
       <ul>

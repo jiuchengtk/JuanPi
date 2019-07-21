@@ -5,7 +5,7 @@ import Footer from '@/components/common/Footer'
 
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
@@ -21,11 +21,36 @@ export default new Router({
       redirect: '/home'
     },
     {
+      path: '/login',
+      name: 'login',
+      components: {
+        default: () => import('@/views/login/index.vue')
+      }
+    },
+    {
+      path: '/register',
+      name: 'register',
+      components: {
+        default: () => import('@/views/register/index.vue')
+      }
+    },
+    {
       path: '/home',
       name: 'home',
       components: {
         default: () => import('./views/home/index.vue'),
         footer: Footer
+      },
+      meta: {
+        // 避免重复渲染
+        keepAlive: true
+      }
+    },
+    {
+      path: '/details/:id',
+      name: 'details',
+      components: {
+        default: () => import('@/views/details/index.vue')
       }
     },
     {
@@ -85,6 +110,34 @@ export default new Router({
       ]
     },
     {
+      path: '/addresslist',
+      name: 'addresslist',
+      components: {
+        default: () => import('./views/addressList/index.vue')
+      }
+    },
+    {
+      path: '/addressediting',
+      name: 'addressediting',
+      components: {
+        default: () => import('./views/addressEditing/index.vue')
+      }
+    },
+    {
+      path: '/discountVolum',
+      name: 'discountVolum',
+      components: {
+        default: () => import('./views/discountVolum/index.vue')
+      }
+    },
+    {
+      path: '/logistics',
+      name: 'logistics',
+      components: {
+        default: () => import('./views/logistics/index.vue')
+      }
+    },
+    {
       path: '/about',
       name: 'about',
       // route level code-splitting
@@ -94,3 +147,5 @@ export default new Router({
     }
   ]
 })
+
+export default router
