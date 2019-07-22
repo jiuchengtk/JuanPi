@@ -7,37 +7,23 @@
             </div>
             <li class="first-li">
                 <ul class="second-ul" v-show="display1">
-<<<<<<< HEAD
-                    <router-link :to="{ name: 'details', params: { id:items.id } }" tag="li" v-for="(items, index) of prolist" :key="index">
-                        <img :src="items.images.small" alt="">
-                        <span>{{ items.id }}</span>
-                        <p>{{ items.title }}</p>
-=======
                     <router-link :to="{ name: 'details', params: { id:items.goods_id } }" tag="li" v-for="(items, index) of prolist" :key="index">
                         <img :src="items.pic_url" alt="">
                         <p>{{ items.title }}</p>
                         <span>￥{{ items.cprice }}</span>
                         <span class="opr">￥{{ items.oprice }}</span>
                         <span class="te">{{ items.leftText }}</span>
->>>>>>> 5ddad44214dabc903988d968d15da98f829bbd3d
                     </router-link>
                 </ul>
             </li>
             <li class="first-li">
                 <ul class="second-ul" v-show="display2">
-<<<<<<< HEAD
-                    <router-link to="" tag="li" v-for="(items, index) of prolist" :key="index">
-                        <img :src="items.images.small" alt="">
-                        <span>{{ items.title }}</span>
-                        <p>{{ items.id }}</p>
-=======
                     <router-link :to="{ name: 'details', params: { id:items.goods_id } }" tag="li" v-for="(items, index) of prolist" :key="index">
                         <img :src="items.pic_url" alt="">
                         <p>{{ items.title }}</p>
                         <span>￥{{ items.cprice }}</span>
                         <span class="opr">￥{{ items.oprice }}</span>
                         <span class="te">{{ items.leftText }}</span>
->>>>>>> 5ddad44214dabc903988d968d15da98f829bbd3d
                     </router-link>
                 </ul>
             </li>
@@ -96,13 +82,8 @@ export default {
                     img{
                         display:block;
                         width:100%;
-<<<<<<< HEAD
-                        height:1rem;
-                        background:#f4f4f8;
-=======
                         height:2rem;
                         background:#f4f4f4;
->>>>>>> 5ddad44214dabc903988d968d15da98f829bbd3d
                     }
                     span{
                         // color:#3b3b3b;
