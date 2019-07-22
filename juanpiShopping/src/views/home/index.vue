@@ -83,7 +83,7 @@ export default {
     onLoad () {
       // console.log('加载数据')
       this.loading = true
-      fetch('http://10.11.56.162:3000/api/singleProduct?conunt=8&start=' + this.page * 8)
+      fetch('/api/singleProduct?conunt=8&start=' + this.page * 8)
         .then(res => res.json()).then(data => {
           // console.log(data)
           this.loading = false
@@ -100,7 +100,7 @@ export default {
     },
     onRefresh () {
       this.isLoading = true
-      fetch('http://10.11.56.162:3000/api/banner')
+      fetch('/api/banner')
         .then(res => res.json()).then(data => {
           this.isLoading = false
           this.prolist = data
@@ -118,7 +118,7 @@ export default {
     }
   },
   mounted () {
-    fetch('http://10.11.56.162:3000/api/banner')
+    fetch('/api/banner')
       .then(res => res.json()).then(data => {
         // console.log(data)
         var arr = []
@@ -128,7 +128,7 @@ export default {
         })
         this.bannerlist = arr
       })
-    fetch('http://10.11.56.162:3000/api/singleProduct')
+    fetch('/api/singleProduct')
       .then(res => res.json()).then(data => {
         // var arr2 = []
         // data.map(items => {

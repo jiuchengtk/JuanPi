@@ -159,11 +159,12 @@ export default {
       this.$router.push('/cart')
     },
     onBuyClicked () {
+      Toast('成功添加购买')
       this.show = false
       console.log('onbuy')
     },
     onAddCartClicked () {
-      Toast('加入购物车成功')
+      Toast('成功加入购物车')
       this.show = false
       console.log('onadd')
     },
@@ -197,7 +198,7 @@ export default {
   mounted () {
     const { $route: { params: { id } } } = this
     // console.log(id)
-    fetch('http://10.11.56.162:3000/api/singleProduct/details?id=' + id)
+    fetch('/api/singleProduct/details?id=' + id)
       .then(res => res.json()).then(data => {
         // console.log(data[0])
         this.title = data[0].title
