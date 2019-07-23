@@ -9,6 +9,15 @@ export default new Vuex.Store({
     loginState: '',
     cartlist: []
   },
+  getters: {
+    totalNum (state) {
+      let totalNum = 0
+      state.cartlist.map(item => {
+        totalNum += item.num
+      })
+      return totalNum
+    }
+  },
   // 改变状态
   mutations: {
     [types.CHANGE_LOGIN_STATE] (state, data) {

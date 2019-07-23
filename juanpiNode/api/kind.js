@@ -111,5 +111,6 @@ router.get('/tourism', function(req, res, next) {
     res.send(data)
   })
 })
+// ./mongoimport --db JuanPiShopping --collection banner --file /usr/local/src/myapp/data/banner.json
 
 module.exports = router;
